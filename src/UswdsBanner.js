@@ -8,18 +8,13 @@ export class UswdsBanner extends LitElement {
         font-size: 1.06rem;
         line-height: 1.5;
       }
-      .usa-banner {
-        font-size: .87rem;
-        padding-bottom: 0;
-        background-color: #0f0f0f;
-        
-      }
       .usa-accordion {
         list-style-type: none;
         color: #1b1b1b;
         margin: 0;
         padding: 0;
         width: 100%;
+        background-color:#f0f0f0;
       }
       .usa-banner__header{
         padding-bottom: .5rem;
@@ -44,6 +39,22 @@ export class UswdsBanner extends LitElement {
         align-items: flex-start;
         padding-right: 0;
       }
+      .usa-banner__header-flag, .grid-col, .usa-banner__header-text {
+        width: auto !important;
+        max-width:100%;
+      }
+      .usa-banner__header-flag, .usa-banner__header-text {
+        -webkit-box-flex: 0!important;
+        flex: 0 0 auto!important;
+      }
+      .usa-banner__header-flag {
+        float: left;
+        padding-right: 3px;
+      }
+      .usa-banner__header-text p{
+        margin-top: 0px;
+      }
+
     `;
   }
 
@@ -60,26 +71,24 @@ export class UswdsBanner extends LitElement {
     this.counter = 5;
   }
 
-  __increment() {
-    this.counter += 1;
-  }
-
   render() {
     return html`
-      <header class="usa-banner__header">
-        <div class="usa-banner__inner">
-          <div class="grid-col-auto">
-            <img class="usa-banner__header-flag" src="/assets/img/us_flag_small.png" alt="U.S. flag">
+      <div class="usa-accordion" aria-label="Official Government Website">
+        <header class="usa-banner__header">
+          <div class="usa-banner__inner">
+            <div class="usa-banner__header-flag">
+              <img src="https://designsystem.digital.gov/assets/img/us_flag_small.png" alt="U.S. flag">
+            </div>
+            <div class="usa-banner__header-text">
+              <p>An official website of the United States government</p>
+              <!--<p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>-->
+            </div>
+            <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner-demo">
+              <span class="usa-banner__button-text">Here’s how you know</span>
+            </button>
           </div>
-          <div class="grid-col-fill tablet:grid-col-auto">
-            <p class="usa-banner__header-text">An official website of the United States government</p>
-            <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
-          </div>
-          <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner-demo">
-            <span class="usa-banner__button-text">Here’s how you know</span>
-          </button>
-        </div>
-      </header>
+        </header>
+      </div>
     `;
   }
 }
