@@ -16,6 +16,19 @@ export class UswdsBanner extends LitElement {
         width: 100%;
         background-color:#f0f0f0;
       }
+
+      .active, .usa-accordion__button:hover {
+        background-color: #ccc;
+      }
+      
+      /* Style the collapsible content. Note: hidden by default */
+      .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+      }
+
       .usa-banner__header{
         padding-bottom: .5rem;
         padding-top: .5rem;
@@ -64,12 +77,28 @@ export class UswdsBanner extends LitElement {
       counter: { type: Number },
     };
   }
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+
 
   constructor() {
     super();
     this.title = 'Hey there';
     this.counter = 5;
+    var coll = document.getElementsByClassName("usa-accordion__button");
+    var i;
   }
+
 
   render() {
     return html`
@@ -86,6 +115,11 @@ export class UswdsBanner extends LitElement {
             <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner-demo">
               <span class="usa-banner__button-text">Here’s how you know</span>
             </button>
+            <div class="content">
+              <p> some shit about gov stuff with icons and things </p>
+            
+            </div>
+
           </div>
         </header>
       </div>
