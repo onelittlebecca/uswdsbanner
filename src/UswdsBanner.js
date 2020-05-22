@@ -21,7 +21,6 @@ export class UswdsBanner extends LitElement {
         background-color: #ccc;
       }
       
-      /* Style the collapsible content. Note: hidden by default */
       .content {
         padding: 0 18px;
         display: none;
@@ -77,19 +76,6 @@ export class UswdsBanner extends LitElement {
       counter: { type: Number },
     };
   }
-  
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight){
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      }
-    });
-  }
-
 
   constructor() {
     super();
@@ -125,4 +111,22 @@ export class UswdsBanner extends LitElement {
       </div>
     `;
   }
+
+   /**
+   * LitElement properties and shadowRoot ready
+   */
+  firstUpdated() {
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  }
+
 }
